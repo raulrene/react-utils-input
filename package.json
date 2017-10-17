@@ -1,6 +1,6 @@
 {
   "name": "react-utils-input",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Lightweight React Input component, serving as an utility wrapper for HTML Input elements.",
   "author": "Raul Rene Lepsa <raul.lepsa@gmail.com> (https://github.com/raulrene)",
   "license": "MIT",
