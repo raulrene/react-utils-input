@@ -11,9 +11,9 @@ const config = {
 
     // Some libs need to be set as externals for enzyme
     externals: {
-        'react/addons': 'react',
-        'react/lib/ExecutionEnvironment': 'react',
-        'react/lib/ReactContext': 'react'
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
     },
 
     module: {
