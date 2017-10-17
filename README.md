@@ -1,4 +1,4 @@
-# React Utils Input
+# React Utils Input [![Build Status](https://travis-ci.org/raulrene/react-utils-input.svg?branch=master)](https://travis-ci.org/raulrene/react-utils-input)
 Lightweight React Input component, serving as an utility wrapper for HTML Input elements.
 
 ## Installation
