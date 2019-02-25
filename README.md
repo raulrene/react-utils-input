@@ -1,10 +1,12 @@
 # React Utils Input [![Build Status](https://travis-ci.org/raulrene/react-utils-input.svg?branch=master)](https://travis-ci.org/raulrene/react-utils-input)
-Lightweight React Input component, serving as an utility wrapper for HTML Input elements.
+Lightweight React Input component, serving as a reusable utility wrapper for HTML Input elements.
+
+Provides access to commonly used methods as well as wrapper and element classes for reusability. 
 
 ## Installation
 
 ```sh
-npm install react-utils-input
+npm install --save react-utils-input
 ```
 
 ## Usage
@@ -20,19 +22,25 @@ class Container extends React.Component {
         this.state = { value: null };
     }
     
+    componentDidMount() {
+        // Programmatically focus the input
+        this.input && this.input.focus();
+    }
+    
     render() {
-        return <Input autoComplete='off',
-                    className='input-custom-class',
-                    disabled={true},
-                    name='custom-name',
-                    onBlur={() => {}},
-                    onChange={ev => this.setState({ value: ev.target.value })},
-                    onFocus={() => {}},
-                    onKeyDown={() => {}},
-                    onKeyUp={() => {}},
-                    placeholder='custom-placeholder',
-                    type='password',
-                    value={this.state.value},
+        return <Input ref={c => this.input = c}
+                    autoComplete='off'
+                    className='input-custom-class'
+                    disabled={true}
+                    name='custom-name'
+                    onBlur={() => {}}
+                    onChange={ev => this.setState({ value: ev.target.value })}
+                    onFocus={() => {}}
+                    onKeyDown={() => {}}
+                    onKeyUp={() => {}}
+                    placeholder='custom-placeholder'
+                    type='password'
+                    value={this.state.value}
                     wrapperClassName='wrapper-custom-class'/>;
     }
 }
@@ -57,6 +65,9 @@ const Input = require('react-utils-input');
 - **placeholder** (string) - sets the placeholder attr. on the input
 - **value** (text) - sets the value of the input
 - **wrapperClassName** (string) - extra classes for the wrapper
+
+## Extra methods
+- **focus** (function) - focus the input programmatically
 
 ### Licence
 The code is open-source and available under the MIT Licence. More details in the LICENCE.md file.

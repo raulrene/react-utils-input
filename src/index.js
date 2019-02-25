@@ -5,19 +5,50 @@ class ReactUtilsInput extends React.Component {
 
     constructor() {
         super();
-        this.state = { focused: false };
+        this.state = {
+            focused: false,
+            selectionStart: 0
+        };
+        this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
     }
 
+    /** Focus the input */
+    focus() {
+        const input = this.input;
+        if (input) {
+            // Focus the element
+            input.focus();
+            // This is mainly for IE and older browsers, bc when they focus they don't focus at the end of the current text
+            // So we have to force the caret to move at our desired position
+            setTimeout(() => {
+                input.selectionStart = this.state.selectionStart || 100000;
+                input.selectionEnd = this.state.selectionStart || 100000;
+            }, 0);
+        }
+    }
+
+    /**
+     * Intercept onChange handler to store the current caret position
+     * @param {Event} e the triggered event
+     */
+    onChange = (e) => {
+        this.props.onChange(e);
+        this.setState({ selectionStart: this.input.selectionStart });
+    };
+
+    /** On Focus callback */
     onFocus() {
         this.setState({ focused: true });
     }
 
+    /** On Blur callback */
     onBlur() {
         this.setState({ focused: false });
     }
 
     render() {
-        const { autoComplete, className, disabled, name, onBlur, onChange, onFocus, onKeyDown, onKeyUp, placeholder, type, value, wrapperClassName } = this.props;
+        const { autoComplete, className, disabled, name, onBlur, onFocus, onKeyDown, onKeyUp, placeholder, type, value, wrapperClassName } = this.props;
         let wrapperClass = 'utils-input-wrapper';
         if (wrapperClassName) {
             wrapperClass += ` ${wrapperClassName}`;
@@ -31,13 +62,14 @@ class ReactUtilsInput extends React.Component {
 
         return (
             <div className={wrapperClass}>
-                <input autoComplete={autoComplete}
+                <input ref={c => this.input = c}
+                       autoComplete={autoComplete}
                        className={`utils-input${className ? ` ${className}` : ''}`}
                        disabled={disabled ? 'disabled' : undefined}
                        name={name}
-                       onBlur={onBlur || this.onBlur.bind(this)}
-                       onChange={!disabled ? onChange : () => {}}
-                       onFocus={onFocus || this.onFocus.bind(this)}
+                       onBlur={onBlur || this.onBlur}
+                       onChange={!disabled ? this.onChange : () => {}}
+                       onFocus={onFocus || this.onFocus}
                        onKeyDown={onKeyDown}
                        onKeyUp={onKeyUp}
                        placeholder={placeholder}
