@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 import chaiEnzyme from 'chai-enzyme';
@@ -12,7 +13,7 @@ chai.use(chaiEnzyme());
 configure({ adapter: new Adapter() });
 
 describe('Input Component', () => {
-    describe('when rendering the component', () => {
+    describe('classes', () => {
         it('should always have class "utils-input-wrapper" set', () => {
             const wrapper = shallow(<Input/>);
             expect(wrapper).to.have.className('utils-input-wrapper');

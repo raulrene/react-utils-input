@@ -48,7 +48,10 @@ class ReactUtilsInput extends React.Component {
     }
 
     render() {
-        const { autoComplete, className, disabled, name, onBlur, onFocus, onKeyDown, onKeyUp, placeholder, type, value, wrapperClassName } = this.props;
+        const {
+            autoComplete, className, disabled, name, onBlur, onFocus,
+            onKeyDown, onKeyUp, placeholder, type, value, wrapperClassName
+        } = this.props;
         let wrapperClass = 'utils-input-wrapper';
         if (wrapperClassName) {
             wrapperClass += ` ${wrapperClassName}`;
@@ -68,7 +71,8 @@ class ReactUtilsInput extends React.Component {
                        disabled={disabled ? 'disabled' : undefined}
                        name={name}
                        onBlur={onBlur || this.onBlur}
-                       onChange={!disabled ? this.onChange : () => {}}
+                       onChange={!disabled ? this.onChange : () => {
+                       }}
                        onFocus={onFocus || this.onFocus}
                        onKeyDown={onKeyDown}
                        onKeyUp={onKeyUp}

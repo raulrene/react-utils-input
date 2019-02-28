@@ -1,0 +1,69 @@
+extends:
+  - eslint:recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:inferno/recommended
+  - plugin:react/recommended
+  - google
+
+plugins:
+  - babel
+  - require-jsdoc-except
+
+rules:
+  # Disabled rules
+  no-console: off
+  comma-dangle: off
+  arrow-parens: off
+  space-before-function-paren: off
+  object-curly-spacing: off
+  padded-blocks: off
+  camelcase: off
+  require-jsdoc: off
+  no-invalid-this: off
+
+  # Enabled rules
+  babel/no-invalid-this: 2
+  curly: [2, "all"]
+  indent: [2, 4, { SwitchCase: 1, ignoredNodes: ["JSXElement *"]}]
+  space-infix-ops: 2
+  prefer-template: 2
+  valid-jsdoc: [2, { prefer: { return: "returns"}, requireReturn: false, requireReturnDescription: false }]
+  max-len: [2, {
+    code: 130,
+    tabWidth: 2,
+    ignoreUrls: true,
+  }]
+  max-lines-per-function: [2, 60]
+  max-lines: [2, {
+    max: 600,
+    skipComments: true,
+    skipBlankLines: true
+  }]
+  require-jsdoc-except/require-jsdoc: ["error", {
+      require: {
+          FunctionDeclaration: true,
+          MethodDefinition: true,
+          FunctionExpression: true,
+      },
+      ignore: ["constructor", "componentDidMount", "componentDidUpdate", "componentWillUnmount", "render"]
+    }]
+
+parser: babel-eslint
+parserOptions:
+  ecmaVersion: 8
+
+env:
+  browser: true
+  node: true
+
+globals:
+  Promise: true
+  describe: true
+  beforeAll: true
+  afterAll: true
+  it: true
+  expect: true
+  jest: true
+  afterEach: true
+  beforeEach: true
