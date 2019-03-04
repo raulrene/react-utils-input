@@ -6,7 +6,7 @@ Provides access to commonly used methods as well as wrapper and element classes 
 ## Installation
 
 ```sh
-npm install --save react-utils-input
+npm i --save react-utils-input
 ```
 
 ## Usage
