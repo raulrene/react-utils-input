@@ -31,7 +31,12 @@ class Container extends React.Component {
         return <Input ref={c => this.input = c}
                     autoComplete='off'
                     className='input-custom-class'
-                    disabled={true}
+                    checked={false}
+                    checkedDefault={false}
+                    disabled={false}
+                    id={'custom-id'}
+                    label={'Label'}
+                    labelBefore={false}
                     name='custom-name'
                     onBlur={() => {}}
                     onChange={ev => this.setState({ value: ev.target.value })}
@@ -55,7 +60,12 @@ const Input = require('react-utils-input');
 ## Options
 - **autocomplete** (string) - sets the autocomplete attr. on the input
 - **className** (string) - extra classes for the input
+- **checked** (boolean, default: false) - checked value for the input (type checkbox/radio)
+- **checkedDefault** (boolean, default: false) - default checked state, for uncontrolled components
 - **disabled** (boolean, default: false) - disabled state for the component; once disabled the onChange callback does not fire anymore; also sets a **utils-input-wrapper--disabled** class
+- **id** (string) - sets the ID attr. on the input
+- **label** (string) - sets the label text (don't forget the **id** attribute if you want the label to be clickable)
+- **labelBefore** (boolean, default: false) - whether the label should be displayed before the input
 - **name** (string) - sets the name attr. on the input
 - **onBlur** (function) - on blur callback
 - **onChange** (function) - on change callback

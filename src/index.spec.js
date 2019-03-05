@@ -13,7 +13,7 @@ chai.use(chaiEnzyme());
 configure({ adapter: new Adapter() });
 
 describe('Input Component', () => {
-    describe('classes', () => {
+    describe('general attributes', () => {
         it('should always have class "utils-input-wrapper" set', () => {
             const wrapper = shallow(<Input/>);
             expect(wrapper).to.have.className('utils-input-wrapper');
@@ -22,6 +22,11 @@ describe('Input Component', () => {
         it('should have a custom class set if wrapperClassName prop provided ', () => {
             const wrapper = shallow(<Input wrapperClassName='custom-class'/>);
             expect(wrapper).to.have.className('custom-class');
+        });
+
+        it('should have an id if the prop provided ', () => {
+            const wrapper = shallow(<Input id='custom-id'/>);
+            expect(wrapper.find('.utils-input')).to.have.id('custom-id');
         });
 
         it('input should have a custom class set if className prop is provided', () => {
@@ -78,6 +83,37 @@ describe('Input Component', () => {
             const wrapper = shallow(<Input value="typed" onChange={() => {
             }}/>);
             expect(wrapper.find('.utils-input')).to.have.attr('value', 'typed');
+        });
+    });
+
+    describe('label', () => {
+        it('should always have a label', () => {
+            const wrapper = shallow(<Input/>);
+            expect(wrapper.find('label').exists()).to.equal(true);
+        });
+
+        it('should have the label after the input, by default', () => {
+            const wrapper = shallow(<Input/>);
+            expect(wrapper.childAt(1).type()).to.equal('label');
+        });
+
+        it('should have the label after the input if specified', () => {
+            const wrapper = shallow(<Input labelBefore={true}/>);
+            expect(wrapper.childAt(0).type()).to.equal('label');
+        });
+    });
+
+    describe('checkbox/radio', () => {
+        it('should have the checked attribute set when prop is received', () => {
+            const wrapper = shallow(<Input type="checkbox" checked={true} value="typed" onChange={() => {
+            }}/>);
+            expect(wrapper.find('.utils-input')).to.have.attr('checked', 'checked');
+        });
+
+        it('should have the checked attribute set when prop checkedDefault is received', () => {
+            const wrapper = shallow(<Input type="checkbox" checkedDefault={true} value="typed" onChange={() => {
+            }}/>);
+            expect(wrapper.find('.utils-input')).to.have.attr('checked', 'checked');
         });
     });
 

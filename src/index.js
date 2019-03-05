@@ -49,8 +49,8 @@ class ReactUtilsInput extends React.Component {
 
     render() {
         const {
-            autoComplete, className, disabled, name, onBlur, onFocus,
-            onKeyDown, onKeyUp, placeholder, type, value, wrapperClassName
+            autoComplete, className, checked, checkedDefault, disabled, id, label, labelBefore,
+            name, onBlur, onFocus, onKeyDown, onKeyUp, placeholder, type, value, wrapperClassName
         } = this.props;
         let wrapperClass = 'utils-input-wrapper';
         if (wrapperClassName) {
@@ -65,10 +65,14 @@ class ReactUtilsInput extends React.Component {
 
         return (
             <div className={wrapperClass}>
+                {labelBefore ? <label htmlFor={id}>{label}</label> : null}
                 <input ref={c => this.input = c}
                        autoComplete={autoComplete}
                        className={`utils-input${className ? ` ${className}` : ''}`}
                        disabled={disabled ? 'disabled' : undefined}
+                       checked={checked}
+                       defaultChecked={checkedDefault}
+                       id={id}
                        name={name}
                        onBlur={onBlur || this.onBlur}
                        onChange={!disabled ? this.onChange : () => {
@@ -80,6 +84,7 @@ class ReactUtilsInput extends React.Component {
                        type={type || 'text'}
                        value={value || ''}
                 />
+                {!labelBefore ? <label htmlFor={id}>{label}</label> : null}
             </div>
         );
     }
@@ -88,7 +93,12 @@ class ReactUtilsInput extends React.Component {
 ReactUtilsInput.propTypes = {
     autoComplete: PropTypes.string,
     className: PropTypes.string,
+    checked: PropTypes.bool,
+    checkedDefault: PropTypes.bool,
     disabled: PropTypes.bool,
+    id: PropTypes.string,
+    label: PropTypes.string,
+    labelBefore: PropTypes.bool,
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,

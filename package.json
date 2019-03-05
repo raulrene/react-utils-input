@@ -1,6 +1,6 @@
 {
     "name": "react-utils-input",
-    "version": "1.2.2",
+    "version": "1.3.0",
     "description": "Lightweight React Input component, serving as a reusable utility wrapper for HTML Input elements.",
     "author": "Raul Rene Lepsa <raul.lepsa@gmail.com> (https://github.com/raulrene)",
     "license": "MIT",
@@ -24,9 +24,7 @@
         "type": "git",
         "url": "https://github.com/raulrene/react-utils-input"
     },
-    "dependencies": {
-        "prop-types": "^15.5.7"
-    },
+    "dependencies": {},
     "devDependencies": {
         "babel-core": "^6.26.3",
         "babel-eslint": "^10.0.1",
@@ -51,6 +49,7 @@
         "jsdom": "^11.3.0",
         "jsdom-global": "^3.0.2",
         "mocha": "^4.0.1",
+        "prop-types": "^15.7.2",
         "react": "15.6.2",
         "react-addons-test-utils": "15.5.0",
         "react-dom": "15.5.0",
